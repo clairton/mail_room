@@ -1,0 +1,14 @@
+---
+:mailboxes:
+  -
+    :email: <%= ENV['IMAP_USER'] %>
+    :password: <%= ENV['IMAP_PASSWORD'] %>
+    :name: inbox
+    # :search_command: 'NEW'
+    :logger:
+      :log_path: :stdout
+    :delivery_options:
+      :delivery_url:  <%= ENV['CHATWOOT_URL'] %>/rails/action_mailbox/relay/inbound_emails
+      :delivery_username: <%= ENV['INGRESS_USER'] %>
+      :delivery_password: <%= ENV['INGRESS_PASSWORD'] %>
+      :content_type: message/rfc822

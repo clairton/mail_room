@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  ruby:
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    command: bundle exec mail_room -c spec/fixtures/dev_config.yml
+    env_file:
+      - .env

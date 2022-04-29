@@ -446,6 +446,10 @@ Simply configure a `log_path` for the `logger` on any of your mailboxes. By defa
 If you wish to log to `STDOUT` or `STDERR` instead of a file, you can pass `:stdout` or `:stderr`,
 respectively and MailRoom will log there.
 
+## Development ##
+
+`Run docker compose build`
+
 ## Contributing ##
 
 1. Fork it
