@@ -79,15 +79,22 @@ module MailRoom
           )
         end
 
-        connection.post do |request|
+        response = connection.post do |request|
           request.url @delivery_options.url
           request.body = message
           config_request_content_type(request)
           config_request_jwt_auth(request)
         end
 
-        @delivery_options.logger.info({ delivery_method: 'Postback', action: 'message pushed', url: @delivery_options.url })
-        true
+        @delivery_options.logger.warn({ delivery_method: 'Postback', action: response, url: @delivery_options.url })
+
+        if response.success? do
+          @delivery_options.logger.info({ delivery_method: 'Postback', action: 'message pushed>>>>>>>', url: @delivery_options.url })
+          true
+        else
+          @delivery_options.logger.warn({ delivery_method: 'Postback', action: 'message push failed', url: @delivery_options.url })
+          false
+        end
       end
 
       private
